@@ -49,7 +49,15 @@ angular.module('firstApp.controllers', [])
   ];
 }])
 
-.controller('StockCtrl', ['$scope', '$stateParams',
-  function($scope, $stateParams) {
+.controller('StockCtrl', ['$scope', '$stateParams', '$http', 'stockDataService',
+  function($scope, $stateParams, $http, stockDataService) {
+
     $scope.ticker = $stateParams.stockTicker;
+    console.log($scope.ticker);
+
+    var promise = stockDataService.getPriceData("YHOO");
+    promise.then(function(data){
+      console.log(data);
+    });
+
 }]);
